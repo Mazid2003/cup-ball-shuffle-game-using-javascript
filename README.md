@@ -63,3 +63,7 @@ git remote add origin <https://github.com/Mazid2003/cup-ball-shuffle-game-using-
 git branch -M main
 
 git push -u origin main
+
+**📝 License**
+
+This project is open-source and available under the MIT License.
