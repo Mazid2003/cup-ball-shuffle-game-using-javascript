@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cup and Ball Game</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .game-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            margin-top: 50px;
+            width: 500px;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cup {
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(to bottom, #b07a3d, #8b5a2b);
+            border-radius: 10px 10px 30% 30%;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease-in-out;
+            border: 3px solid #5a3e1b;
+        }
+        .cup::before {
+            content: "";
+            position: absolute;
+            width: 110%;
+            height: 20px;
+            background: #6d4c30;
+            top: -15px;
+            left: -5%;
+            border-radius: 50%;
+            box-shadow: inset 0px -3px 5px rgba(0, 0, 0, 0.3);
+        }
+        .ball {
+            width: 35px;
+            height: 35px;
+            background: radial-gradient(circle, red, darkred);
+            border-radius: 50%;
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+        }
+        .restart-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .restart-btn:hover {
+            background-color: #218838;
+        }
+        #message {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cup and Ball Game</h1>
+    <p>Watch where the ball is, then find it after shuffling!</p>
+    
+    <div class="game-container">
+        <div class="cup" id="cup1" onclick="selectCup(0)"></div>
+        <div class="cup" id="cup2" onclick="selectCup(1)"></div>
+        <div class="cup" id="cup3" onclick="selectCup(2)"></div>
+    </div>
+    
+    <button class="restart-btn" onclick="restartGame()">Restart</button>
+    <p id="message"></p>
+    
+    <script>
+        let positions = [0, 1, 2];
+        let ballPosition;
+        let cups = document.querySelectorAll('.cup');
+        let message = document.getElementById('message');
+
+        let ball = document.createElement('div');
+        ball.classList.add('ball');
+
+        function placeBall() {
+            ballPosition = Math.floor(Math.random() * 3);
+            cups[positions[ballPosition]].appendChild(ball);
+            ball.style.display = 'block';
+
+            setTimeout(() => {
+                ball.style.display = 'none';
+            }, 1000);
+        }
+
+        function swapCups(index1, index2) {
+            return new Promise(resolve => {
+                let temp = positions[index1];
+                positions[index1] = positions[index2];
+                positions[index2] = temp;
+
+                let cup1 = cups[positions[index1]];
+                let cup2 = cups[positions[index2]];
+                let shift = (index2 - index1) * 140;
+
+                cup1.style.transform = `translateX(${shift}px)`;
+                cup2.style.transform = `translateX(${-shift}px)`;
+
+                setTimeout(() => {
+                    cup1.style.transform = "";
+                    cup2.style.transform = "";
+
+                    if (ballPosition === index1) {
+                        ballPosition = index2;
+                    } else if (ballPosition === index2) {
+                        ballPosition = index1;
+                    }
+
+                    resolve();
+                }, 500);
+            });
+        }
+
+        async function shuffleCups() {
+            message.textContent = "Shuffling...";
+            ball.style.display = 'none';
+
+            for (let i = 0; i < 5; i++) {
+                let idx1 = Math.floor(Math.random() * 3);
+                let idx2 = Math.floor(Math.random() * 3);
+                while (idx1 === idx2) {
+                    idx2 = Math.floor(Math.random() * 3);
+                }
+                await swapCups(idx1, idx2);
+            }
+
+            message.textContent = "Now pick a cup!";
+        }
+
+        function selectCup(index) {
+            if (positions[index] === positions[ballPosition]) {
+                message.textContent = "🎉 Correct! You found the ball!";
+                ball.style.display = 'block';
+            } else {
+                message.textContent = "❌ Wrong! Try again!";
+            }
+        }
+
+        function restartGame() {
+            message.textContent = "Restarting...";
+            positions = [0, 1, 2];
+
+            setTimeout(() => {
+                placeBall();
+                message.textContent = "Watch where the ball is!";
+            }, 1000);
+
+            setTimeout(() => {
+                shuffleCups();
+            }, 2000);
+        }
+
+        restartGame();
+    </script>
+</body>
+</html>
