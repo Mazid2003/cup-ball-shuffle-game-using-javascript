@@ -1,4 +1,4 @@
-# 🎩 Cup and Ball Shuffle Game - JavaScript 🎲
+# 🎩 Cup and Ball Shuffle Game - JavaScript 🏀
 
 The Cup and Ball Shuffle Game is a fun, interactive web-based game built using HTML, CSS, and JavaScript. It challenges players to track a hidden ball as it shuffles under multiple cups. The game enhances focus, memory, and reaction speed while providing an engaging experience.
 
