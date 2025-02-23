@@ -1,1 +1,39 @@
+📌 Requirements for Cup and Ball Shuffle Game
+This project is a simple frontend-based game built using HTML, CSS, and JavaScript, so it doesn't require complex installations or backend setups.
 
+✅ 1. System Requirements
+💻 Operating System: Windows / macOS / Linux
+🌐 Browser: Google Chrome, Mozilla Firefox, Edge, or Safari
+🛠 Code Editor: VS Code, Sublime Text, or any text editor
+
+✅ 2. Required Technologies & Dependencies
+No external libraries are needed—just vanilla JavaScript, HTML, and CSS!
+
+However, if you want to improve the game, you can include:
+🔹 GSAP (GreenSock Animation Platform) – For smoother animations
+🔹 Bootstrap / Tailwind CSS – For styling enhancements
+🔹 Local Storage – To track high scores
+
+To install GSAP (optional):
+
+npm install gsap
+✅ 3. Project Files & Folder Structure
+
+✅ 4. Running the Game Locally
+
+1️⃣ Download or Clone the Repository
+
+git clone https://github.com/Mazid2003/cup-ball-shuffle-game-using-javascript.git
+cd Cup-and-Ball-Game
+
+2️⃣ Open index.html in a browser
+
+Double-click index.html
+Or use VS Code Live Server extension
+
+3️⃣ Play & Enjoy the Game! 🎮
+
+✅ 5. Optional Enhancements
+Add sound effects using Howler.js
+Improve animations using GSAP
+Add a difficulty mode (increase shuffle speed)
