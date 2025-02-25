@@ -66,4 +66,4 @@ git push -u origin main
 
 **📝 License**
 
-This project is open-source and available under the MIT License.
+This project is open-source and available under the MIT License. Feel free to use and modify it! 🚀
