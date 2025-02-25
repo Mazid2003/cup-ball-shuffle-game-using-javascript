@@ -34,7 +34,7 @@ Animations: CSS Keyframes & JavaScript Timing Functions
 
 5️⃣ The game keeps track of scores and provides a replay option.
 
-🚀 How to Add This Project to GitHub
+**🚀 How to Add This Project to GitHub**
 
 1️⃣ Initialize a Git Repository
 
