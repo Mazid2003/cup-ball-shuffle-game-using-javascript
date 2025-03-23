@@ -64,6 +64,10 @@ git branch -M main
 
 git push -u origin main
 
+**💬 Want to Collaborate?**
+
+Feel free to fork the repo, submit PRs, and give your feedback! 🔥💡
+
 **📝 License**
 
 This project is open-source and available under the MIT License. Feel free to use and modify it! 🚀
